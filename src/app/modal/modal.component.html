@@ -1,0 +1,40 @@
+<div class="alert-box">
+  <div class="modal-header">
+    <button
+      *ngIf="showCloseButton"
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="onCancel()"
+    >
+      <span aria-hidden="true" style="color: white">&times;</span>
+    </button>
+    <!--img src="assets/img/favicon.png" width="30" style="margin-bottom: 10px;"-->
+    <h4 class="modal-title {{ globalClass }}">{{ title }}</h4>
+  </div>
+  <div class="modal-body" style="padding-top:0">
+    <div class="{{ globalClass }}">{{ message }}</div>
+  </div>
+  <div class="modal-footer row">
+    <div class="col-sm-4 text-left">
+      <button
+        *ngIf="buttonCancel.show == true"
+        type="button"
+        class="btn btn-secondary"
+        (click)="onCancel()"
+      >
+        CANCELAR
+      </button>
+    </div>
+    <div class="col-sm-4 text-center">
+      <button
+        *ngIf="buttonDelete.show == true"
+        type="button"
+        class="delete-button"
+        (click)="onDelete()"
+      >
+        DELETAR
+      </button>
+    </div>
+  </div>
+</div>

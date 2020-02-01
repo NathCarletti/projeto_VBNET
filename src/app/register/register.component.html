@@ -1,0 +1,102 @@
+<div class="content">
+  <form class="row" (ngSubmit)="submit()" [formGroup]='registerForm' autocomplete="on">
+    <div class='col-xs-12'>
+      <h4>CADASTRO</h4>
+      <div class='row'>
+        <div class='form-group col-sm-6'>
+          <label for='name'>Nome Completo:</label>
+          <input id='name' placeholder='Nome*' type='text' class='form-control' formControlName='name' required
+            [ngClass]='fieldHasErrors("name")'>
+          <app-field-feedback [field]='"Nome"' [control]='registerForm.get("name")'></app-field-feedback>
+        </div>
+        <div class='form-group col-sm-6'>
+          <label for='lastName'>CPF:</label>
+          <input id='lastName' placeholder='CPF*:' type='text' class='form-control' formControlName='cpf' required
+            [ngClass]='fieldHasErrors("cpf")'>
+          <app-field-feedback [field]='"cpf"' [control]='registerForm.get("cpf")'></app-field-feedback>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='form-group col-sm-12'>
+          <label for='bornDate' class=''>Data de Nascimento*:</label>
+          <input id='bornDate' type='text' class='form-control' date formControlName='bornDate' required
+            [ngClass]='fieldHasErrors("bornDate")'>
+          <app-field-feedback [field]='"E-mail"' [control]='registerForm.get("bornDate")'></app-field-feedback>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='form-group col-sm-12'>
+          <label for='patValor' class=''>Valor Patrimonial*</label>
+          <input id='patValor' placeholder="Valor Patrimonial" type='text' class='form-control'
+            formControlName='patValor' [ngClass]='fieldHasErrors("patValor")'>
+          <!--Nao é required-->
+          <app-field-feedback [field]='"Valor Patrimonial"' [control]='registerForm.get("patValor")'>
+          </app-field-feedback>
+        </div>
+      </div>
+    </div>
+    <div class='col-xs-12' style='margin-top:20px;'>
+      <div class='row'>
+        <div class='form-group col-sm-6 col-md-2'>
+          <label for='state'>Situação Candidatura:</label>
+          <div class="select-content">
+            <select id='state' placeholder='Situação' type='text' class='form-control' formControlName='state'
+              value='Situação' [ngClass]='fieldHasErrors("state")' style="-moz-appearance: none;
+                  -webkit-appearance: none; appearance: none;cursor: pointer;">
+              <!--é requerido-->
+              <option>Deferido</option>
+              <option>Indeferido</option>
+              <option>Inapto</option>
+              <option>Em análise</option>
+            </select></div>
+          <app-field-feedback [field]='"Situação"' [control]='registerForm.get("Situação")'></app-field-feedback>
+        </div>
+        <div class='form-group col-sm-8 col-md-9'>
+          <label for='numberU'>Número da Urna:</label>
+          <input id='numberU' placeholder='Número da Urna*' type='text' class='form-control' required
+            formControlName='numberU' [ngClass]='fieldHasErrors("numberU")' maxLength="3" pattern="/[^0-9.]/">
+          <app-field-feedback [field]='"Urna"' [control]='registerForm.get("numberU")'></app-field-feedback>
+        </div>
+        <div class='form-group col-sm-6'>
+          <label for='occupation'>Ocupação:</label>
+          <input id='occupation' placeholder='Ocupação' type='text' maxLength="100" class='form-control'
+            formControlName='occupation' [ngClass]='fieldHasErrors("occupation")'>
+          <app-field-feedback [field]='"Ocupação"' [control]='registerForm.get("occupation")'></app-field-feedback>
+        </div>
+        <div class='form-group col-sm-4 col-md-3'>
+          <label for='councilor'>Vereador</label>
+          <input id='councilor' placeholder='{{jsonWord.placeholder.number}}' type='text' class='form-control'
+            formControlName='councilor' [ngClass]='fieldHasErrors("councilor")'>
+          <app-field-feedback [field]='"Vereador"' [control]='registerForm.get("councilor")'></app-field-feedback>
+        </div>
+        <div class='form-group col-sm-6'>
+          <label for='complement'>Vice-Prefeito</label>
+          <input id='complement' placeholder='{{jsonWord.placeholder.typeComplement}}' type='text' class='form-control'
+            formControlName='complement' [ngClass]='fieldHasErrors("complement")'>
+          <app-field-feedback [field]='"Vice-Prefeito"' [control]='registerForm.get("complement")'>
+          </app-field-feedback>
+        </div>
+        <div class='form-group col-sm-6'>
+          <label for='party'>Partido:</label>
+          <input id='party' placeholder='Partido' type='text' class='form-control' formControlName='party'
+            [ngClass]='fieldHasErrors("party")' maxlength="100">
+          <app-field-feedback [field]='"Partido"' [control]='registerForm.get("party")'></app-field-feedback>
+        </div>
+        <div class='form-group col-sm-6'>
+          <label for='vicePresFk'>Vice-Presidente:</label>
+          <input id='vicePresFk' placeholder='Partido' type='text' class='form-control' formControlName='vicePresFk'
+            [ngClass]='fieldHasErrors("vicePresFk")'>
+          <app-field-feedback [field]='"Vice-Presidente"' [control]='registerForm.get("vicePresFk")'>
+          </app-field-feedback>
+        </div>
+      </div>
+    </div>
+    <div class='col-sm-12' style='margin-top: 16px;'>
+      <button class='btn-secondary botao ' style='float: left !important'>
+        <i class='fa fa-chevron-left'></i>VOLTAR</button>
+      <button class='confirm-button botao btn-submit' style='float: right !important'
+        [disabled]='!registerForm.valid'>SALVAR
+      </button>
+    </div>
+  </form>
+</div>

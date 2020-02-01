@@ -1,0 +1,38 @@
+<table class="table table-striped">
+  <thead>
+    <tr></tr>
+  </thead>
+</table>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nome Completo</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Data Nascimento</th>
+      <th scope="col">Valor Patrimonial</th>
+      <th scope="col">Situação Candidatura</th>
+      <th scope="col">Número da Urna</th>
+      <th scope="col">Ocupação</th>
+      <th scope="col">Vice-Prefeito?</th>
+      <th scope="col">Vereador?</th>
+      <th scope="col">Partido</th>
+      <th scope="col">Vice-Prefeito</th>
+      <th scope="col">Opções</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let country of data; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ country }}
+      </td>
+      <td>
+        <i
+          class="fa fa-trash-o"
+          aria-hidden="true"
+          (click)="deleteUser(country)"
+        ></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
