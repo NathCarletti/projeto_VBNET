@@ -8,6 +8,10 @@ import { ModalComponent } from "./modal/modal.component";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { TooltipModule } from "ngx-bootstrap/tooltip";
 import { ModalModule } from "ngx-bootstrap/modal";
+import { ReactiveFormsModule } from "@angular/forms";
+import { NgxMaskModule, IConfig } from "ngx-mask";
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -18,6 +22,8 @@ import { ModalModule } from "ngx-bootstrap/modal";
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(options),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot()
@@ -25,6 +31,6 @@ import { ModalModule } from "ngx-bootstrap/modal";
   providers: [],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
-  entryComponents: [ModalComponent]
+  entryComponents: [ModalComponent, RegisterComponent]
 })
 export class AppModule {}

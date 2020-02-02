@@ -5,7 +5,9 @@ import {
   Validators,
   AbstractControl
 } from "@angular/forms";
+import { BsModalService } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-register",
@@ -14,8 +16,20 @@ import { BsModalRef } from "ngx-bootstrap";
 })
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
+  public modalRef: BsModalRef;
+  public buttonCancel: any = {
+    show: false,
+    text: "CANCELAR"
+  };
+  public buttonDelete: any = {
+    show: false,
+    text: "DELETAR"
+  };
 
-  constructor(public fb: FormBuilder, public modalRef: BsModalRef) {
+  public showCloseButton: boolean = true;
+  public onClose: Subject<boolean>;
+
+  constructor(private fb: FormBuilder, private _bsModalRef: BsModalRef) {
     this.registerForm = fb.group({
       name: [
         "",
@@ -32,9 +46,9 @@ export class RegisterComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(11),
-          Validators.pattern(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/) //regex cpf
+          Validators.pattern(/^(\d{3}\.){2}\d{3}\-\d{2}$/),
+          Validators.minLength(14), // digits + word characters
+          Validators.maxLength(14) // digits + word characters
         ]
       ],
       bornDate: [
@@ -51,7 +65,6 @@ export class RegisterComponent implements OnInit {
       patValor: [
         "",
         [
-          Validators.required,
           Validators.minLength(8),
           Validators.maxLength(60),
           Validators.pattern(/^[1-9]\d{0,2}(\.\d{3})*,\d{2}$/)
@@ -59,24 +72,18 @@ export class RegisterComponent implements OnInit {
       ],
       state: [
         "",
-        [
-          Validators.required,
-          Validators.minLength(1),
-          Validators.maxLength(3),
-          Validators.pattern(
-            /^(\(1[1-9]\)\s?(?:7|9\d)\d{3}-\d{4}|(?:\(2[12478]\)|\(3[1-578]\)|\([4689][1-9]\)|\(5[13-5]\)|\(7[13-579]\))\s?(?:[6-8]|9\d?)\d{3}-\d{4})$/
-          )
-        ]
+        [Validators.required, Validators.minLength(1), Validators.maxLength(3)]
       ],
       numberU: [
         "",
         [
+          Validators.required,
           Validators.minLength(1),
           Validators.maxLength(3),
           Validators.pattern(/[^0-9.]/)
         ]
       ],
-      ocupation: [
+      occupation: [
         "",
         [
           Validators.required,
@@ -84,17 +91,62 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(100)
         ]
       ],
-      councilor: ["", [Validators.minLength(2), Validators.maxLength(100)]],
-      vicePresFk: [
+      party: [
         "",
         [
+          Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(60),
-          Validators.pattern(/^(\d){0,5}?$/)
+          Validators.maxLength(100)
         ]
-      ]
+      ],
+      vice: [""],
+      ver: [""],
+      councilor: ["", [Validators.minLength(2), Validators.maxLength(100)]],
+      vicePrefFk: ["", [Validators.minLength(2), Validators.maxLength(50)]]
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onClose = new Subject();
+  }
+
+  submit() {
+    var data = this.registerForm.value;
+    if (this.registerForm.invalid) {
+      Object.keys(this.registerForm.controls).forEach(key => {
+        let control = this.registerForm.get(key);
+        control.markAsPending();
+        control.markAsDirty();
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      });
+      return;
+    } else {
+      console.log(data);
+    }
+  }
+
+  fieldHasErrors(field) {
+    let control = this.registerForm.get(field);
+    console.log(field, control);
+    if (
+      control.errors &&
+      Object.keys(control.errors).length &&
+      control.invalid &&
+      control.touched &&
+      control.dirty
+    )
+      return "has-errors";
+    return "";
+  }
+
+  public onConfirm(): void {
+    this.onClose.next(true);
+    this._bsModalRef.hide();
+  }
+
+  public onCancel(): void {
+    this.onClose.next(false);
+    this._bsModalRef.hide();
+  }
 }

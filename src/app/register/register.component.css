@@ -1,0 +1,127 @@
+.container {
+  color: white;
+  padding: 0;
+}
+
+.form-signup {
+  width: 80%;
+  min-width: 400px;
+  background: rgba(0, 0, 0, 0.8);
+  margin: 0px;
+  margin-top: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+}
+
+input,
+select {
+  width: 100%;
+  border-radius: 0px;
+  /*background-color: rgba(138,140,140,0.3);*/
+  border: 1px solid whitesmoke;
+}
+
+input:read-only {
+  background: rgba(200, 200, 200, 0);
+  color: #1a90c7;
+}
+
+.form-signup label {
+  color: #f5f5f5;
+  font-weight: lighter;
+  /*margin-top: 10px;*/
+}
+
+.form-group {
+  padding: 10px;
+}
+
+.form-group:focus-within label {
+  color: #1a90c7;
+}
+
+input:focus:not(:read-only) {
+  border-color: #1a90c7 !important;
+}
+
+input:focus:not(:read-only)::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #1a90c7;
+  opacity: 1; /* Firefox */
+}
+
+:required:not(:read-only)::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+input.has-errors {
+  /*color: rgb(241, 68, 68);*/
+  border-color: rgb(241, 68, 68) !important;
+}
+
+input.has-errors:focus::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(110, 32, 32);
+  opacity: 1; /* Firefox */
+}
+
+.save-button {
+  color: #f2f2f2;
+  border-radius: 10px;
+  background: #1a90c7;
+  padding: 13px 36px 10px 36px;
+  border: none;
+}
+
+.save-button:hover {
+  color: white;
+  cursor: pointer;
+  box-shadow: 1px 2px 18px #060b0e;
+}
+.btn-secondary {
+  color: #f5f5f5;
+  letter-spacing: 2px;
+  border: 2px solid #c5c5c5;
+  background: transparent;
+  border-radius: 10px !important;
+  padding: 10px 30px 7px 30px;
+}
+input[type="file"] {
+  display: none;
+}
+
+.btn-profile {
+  font-size: 24px;
+  cursor: pointer;
+  color: gray;
+}
+
+.btn-profile:hover {
+  color: white;
+}
+
+.disabled {
+  cursor: default;
+  color: #333;
+}
+
+.disabled:hover {
+  color: #333;
+}
+input[type="radio"] {
+  width: 15px !important;
+  border: none !important;
+}
+
+input[type="checkbox"]:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus {
+  border-color: transparent;
+  border: none;
+  background: transparent !important;
+}

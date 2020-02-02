@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BsModalService } from "ngx-bootstrap";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { ModalComponent } from "../modal/modal.component";
+import { RegisterComponent } from "../register/register.component";
 
 @Component({
   selector: "app-info-table",
@@ -10,11 +11,19 @@ import { ModalComponent } from "../modal/modal.component";
 })
 export class InfoTableComponent implements OnInit {
   public modalRef: BsModalRef;
+  public modalRefReg: BsModalRef;
 
   data = ["nome", "cpf"];
   constructor(private modalService: BsModalService) {}
 
   ngOnInit() {}
+
+  openRegisterModal() {
+    this.modalRefReg = this.modalService.show(RegisterComponent);
+    this.modalRefReg.content.onClose.subscribe(res => {
+      console.log("register", res);
+    });
+  }
 
   deleteUser(user) {
     this.modalRef = this.modalService.show(ModalComponent);
