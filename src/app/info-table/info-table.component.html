@@ -27,10 +27,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of data; index as i">
-          <th scope="row">{{ i + 1 }}</th>
+        <tr *ngFor="let user of listAll; index as i">
           <td>
-            {{ user }}
+            {{ user.nome }}
+          </td>
+          <td>
+            {{ user.cpf }}
+          </td>
+          <td>
+            {{ user.datanasc }}
+          </td>
+          <td>
+            {{ user.valorp }}
+          </td>
+          <td>
+            {{ user.numurna }}
+          </td>
+          <td>
+            {{ user.situacao }}
+          </td>
+          <td>
+            {{ user.ocupacao }}
+          </td>
+          <td>
+            {{ user.vice }}
+          </td>
+          <td>
+            {{ user.ver }}
+          </td>
+          <td>
+            {{ user.partido }}
+          </td>
+          <td>
+            {{ user.vicepref }}
           </td>
           <td>
             <i class="fa fa-pencil" (click)="editUserModal(user)" aria-hidden="true"></i>
